@@ -1,1 +1,66 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<style>		
+		body { font-family: Helvetica, Arial, sans-serif; color: #333; font-size: 30px; }
+		span { line-height: 40px; }
+		body > div { padding: 20px }
+	</style>
+	
+	<div>
+		<h3>CDH daily XP</h3>
+	</div>
+	
+	<div>
+		<div><span>XP per stage</span></div>	
+		<div><input type="text" id="input-xp" value="0"></div>
+	</div>
+	
+	<div>
+		<div><span>Energy per stage</span></div>
+		<div><input type="text" id="input-energy" value="0"></div>
+	</div>
+	
+	<div>
+		<div><span>XP Goal</span></div>
+		<div><input type="text" id="input-xpgoal" value="315000"></div>
+	</div>
+	
+  <div>
+		<div><span>Day left to goal</span></div>
+		<div><input type="text" id="input-dayleft" value="1"></div>
+	</div>
+  
+	<div>
+		<div><button onclick='calculate()'>Calculate</button></div>			
+	</div>
+	
+	<div>
+		<div><span id='span-result'></span></div>	
+	</div>
 
+    <script>
+      
+	const format = num => String(num).replace(/(?<!\..*)(\d)(?=(?:\d{3})+(?:\.|$))/g, '$1,');
+	
+	function calculate() {
+		let xPperStage = parseFloat(document.getElementById("input-xp").value);
+		let energy = parseFloat(document.getElementById("input-energy").value);
+		let xpNeeded = parseFloat(document.getElementById("input-xpgoal").value);
+		let dayLeft = parseFloat(document.getElementById("input-dayleft").value);
+    
+		let xpNeedPerDay = xpNeeded/dayLeft;
+		let energyNeedPerDay = xpNeedPerDay/xPperStage;
+		console.log(xpNeedPerDay, energyNeedPerDay);
+		
+		let numberOfMarrowStage = xpNeedPerDay/1050;
+		let totalEnergy = numberOfMarrowStage*6;
+		console.log(numberOfMarrowStage, totalEnergy);
+		
+		document.getElementById("span-result").textContent = "You need "+ xpNeedPerDay + "XP and " + energyNeedPerDay + "energy per day to reach goal. Alternative if you farm King's Marrow final stage you need to beat " + numberOfMarrowStage + "stage and " + totalEnergy + " energy to reach goal.";
+	}
+
+    </script>
+
+</body>
+</html>
