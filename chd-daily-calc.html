@@ -50,14 +50,15 @@
 		let dayLeft = parseFloat(document.getElementById("input-dayleft").value);
     
 		let xpNeedPerDay = xpNeeded/dayLeft;
+		let numberOfStage = Math.ceil(xpNeedPerDay/xPperStage);
 		let energyNeedPerDay = parseInt((xpNeedPerDay/xPperStage)*energy)+1;
-		console.log(xpNeedPerDay, energyNeedPerDay);
+		console.log(xpNeedPerDay, energyNeedPerDay, numberOfStage);
 		
 		let numberOfMarrowStage = Math.ceil(xpNeedPerDay/1050);
 		let totalEnergy = numberOfMarrowStage*6;
 		console.log(numberOfMarrowStage, totalEnergy);
 		
-		document.getElementById("span-result").textContent = "You need "+ xpNeedPerDay + " XP and " + energyNeedPerDay + " energy per day to reach goal. Alternative if you farm King's Marrow final stage you need to beat " + numberOfMarrowStage + " stage and " + totalEnergy + " energy per day.";
+		document.getElementById("span-result").textContent = "You need "+ xpNeedPerDay + " XP and beat " + numberOfStage + " stage with " + energyNeedPerDay + " energy per day to reach goal. Alternative if you farm King's Marrow final stage you need to beat " + numberOfMarrowStage + " stage and " + totalEnergy + " energy per day.";
 	}
 
     </script>
