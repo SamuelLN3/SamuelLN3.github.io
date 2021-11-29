@@ -22,7 +22,7 @@
 	</div>
 	
 	<div>
-		<div><span>XP Goal</span></div>
+		<div><span>XP left to Goal</span></div>
 		<div><input type="text" id="input-xpgoal" value="315000"></div>
 	</div>
 	
@@ -50,14 +50,14 @@
 		let dayLeft = parseFloat(document.getElementById("input-dayleft").value);
     
 		let xpNeedPerDay = xpNeeded/dayLeft;
-		let energyNeedPerDay = xpNeedPerDay/xPperStage;
+		let energyNeedPerDay = parseInt((xpNeedPerDay/xPperStage)*energy)+1;
 		console.log(xpNeedPerDay, energyNeedPerDay);
 		
-		let numberOfMarrowStage = xpNeedPerDay/1050;
+		let numberOfMarrowStage = Math.ceil(xpNeedPerDay/1050);
 		let totalEnergy = numberOfMarrowStage*6;
 		console.log(numberOfMarrowStage, totalEnergy);
 		
-		document.getElementById("span-result").textContent = "You need "+ xpNeedPerDay + "XP and " + energyNeedPerDay + "energy per day to reach goal. Alternative if you farm King's Marrow final stage you need to beat " + numberOfMarrowStage + "stage and " + totalEnergy + " energy to reach goal.";
+		document.getElementById("span-result").textContent = "You need "+ xpNeedPerDay + " XP and " + energyNeedPerDay + " energy per day to reach goal. Alternative if you farm King's Marrow final stage you need to beat " + numberOfMarrowStage + " stage and " + totalEnergy + " energy per day.";
 	}
 
     </script>
